@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Administración - Recetas</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+</head>
+
+<body>
+
+    <header class="barra-superior">
+        <h1>Panel de Administración (CRUD Recetas)</h1>
+        <div>
+            <span>Bienvenida, <strong>
+                    <%= usuarioSesion ? usuarioSesion.nombre : 'Admin' %>
+                </strong></span>
+            <span class="etiqueta-nodo" style="margin-left: 10px;">Nodo: <%= nombreNodo %></span>
+            <a href="/salir" class="btn-salir">Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <div class="contenedor-principal">
+
+        <% if (error) { %>
+            <div class="alerta-error">
+                <%= error %>
+            </div>
+            <% } %>
+
+                <div class="seccion-flex">
+
+                    <!-- Formulario para Registrar Nueva Receta -->
+                    <div class="tarjeta-blanca">
+                        <h3>Registrar Receta</h3>
+                        <form action="/admin/crear" method="POST" style="margin-top: 1rem;">
+
+                            <div class="campo-formulario">
+                                <label>Código Único:</label>
+                                <input type="text" name="codigo" placeholder="Ej: REC-004" required>
+                            </div>
+
+                            <div class="campo-formulario">
+                                <label>Nombre del Platillo:</label>
+                                <input type="text" name="nombre" placeholder="Ej: Seco de Chivo" required>
+                            </div>
+
+                            <div class="campo-formulario">
+                                <label>Categoría:</label>
+                                <select name="categoria" required>
+                                    <option value="Plato Fuerte">Plato Fuerte</option>
+                                    <option value="Entrada">Entrada</option>
+                                    <option value="Postre">Postre</option>
+                                    <option value="Bebida">Bebida</option>
+                                </select>
+                            </div>
+
+                            <div class="campo-formulario">
+                                <label>Porciones:</label>
+                                <input type="number" name="porciones" value="4" min="1" required>
+                            </div>
+
+                            <div class="campo-formulario">
+                                <label>Descripción / Preparación:</label>
+                                <textarea name="descripcion" rows="3" placeholder="Detalles de preparación..."
+                                    required></textarea>
+                            </div>
+
+                            <div class="campo-formulario">
+                                <label>URL de Imagen:</label>
+                                <input type="url" name="imagen_url" placeholder="https://ejemplo.com/imagen.jpg">
+                            </div>
+
+                            <div class="campo-formulario">
+                                <label>URL Video (YouTube):</label>
+                                <input type="url" name="video_url" placeholder="https://youtube.com/watch?v=...">
+                            </div>
+
+                            <button type="submit" class="btn-principal">Guardar Receta</button>
+                        </form>
+                    </div>
+
+                    <!-- Tabla de Recetas Registradas -->
+                    <div class="tarjeta-blanca">
+                        <h3>Catálogo de Recetas Existentes</h3>
+                        <table class="tabla-datos">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nombre</th>
+                                    <th>Categoría</th>
+                                    <th>Porciones</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% recetas.forEach(r=> { %>
+                                    <tr>
+                                        <td><strong>
+                                                <%= r.codigo %>
+                                            </strong></td>
+                                        <td>
+                                            <%= r.nombre %>
+                                        </td>
+                                        <td>
+                                            <%= r.categoria %>
+                                        </td>
+                                        <td>
+                                            <%= r.porciones %>
+                                        </td>
+                                        <td>
+                                            <a href="/admin/eliminar/<%= r.id %>" class="btn-eliminar"
+                                                onclick="return confirm('¿Eliminar receta?')">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+    </div>
+
+</body>
+
+</html>

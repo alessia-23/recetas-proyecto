@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Recetas</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+</head>
+
+<body>
+
+    <header class="barra-superior">
+        <h1>Menú de Recetas Gastronómicas</h1>
+        <div>
+            <span>Bienvenido, <strong>
+                    <%= usuarioSesion ? usuarioSesion.nombre : 'Cliente' %>
+                </strong></span>
+            <span class="etiqueta-nodo" style="margin-left: 10px;">Nodo: <%= nombreNodo %></span>
+            <a href="/salir" class="btn-salir">Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <div class="contenedor-principal">
+
+        <!-- Filtros -->
+        <div class="tarjeta-blanca" style="margin-bottom: 1.5rem;">
+            <form method="GET" action="/cliente" style="display: flex; gap: 1rem; align-items: center;">
+                <label style="font-weight: 600;">Filtrar por Categoría:</label>
+                <select name="categoria" style="padding: 0.5rem; border-radius: 4px; border: 1px solid #cbd5e1;">
+                    <option value="">Todas las categorías</option>
+                    <option value="Plato Fuerte" <%=categoriaFiltro==='Plato Fuerte' ? 'selected' : '' %>>Plato Fuerte
+                    </option>
+                    <option value="Entrada" <%=categoriaFiltro==='Entrada' ? 'selected' : '' %>>Entrada</option>
+                    <option value="Postre" <%=categoriaFiltro==='Postre' ? 'selected' : '' %>>Postre</option>
+                </select>
+                <button type="submit" class="btn-principal"
+                    style="width: auto; padding: 0.5rem 1.5rem;">Filtrar</button>
+            </form>
+        </div>
+
+        <!-- Catálogo de Tarjetas -->
+        <div class="grid-recetas">
+            <% recetas.forEach(receta=> { %>
+                <div class="tarjeta-receta">
+                    <img src="<%= receta.imagen_url || 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?auto=format&fit=crop&w=600&q=80' %>"
+                        alt="<%= receta.nombre %>" class="imagen-receta">
+
+                    <div class="cuerpo-tarjeta">
+                        <span class="categoria-badge">
+                            <%= receta.categoria %>
+                        </span>
+                        <h3>
+                            <%= receta.nombre %>
+                        </h3>
+                        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.5rem;">
+                            <%= receta.descripcion %>
+                        </p>
+                        <p style="font-size: 0.85rem;"><strong>Porciones:</strong>
+                            <%= receta.porciones %> raciones
+                        </p>
+
+                        <% if (receta.video_url) { %>
+                            <a href="<%= receta.video_url %>" target="_blank" class="enlace-video">▶ Ver Video
+                                Tutorial</a>
+                            <% } %>
+
+                                <button class="btn-agregar"
+                                    onclick="alert('¡Receta <%= receta.nombre %> agregada a tu plan de cocina!')">Agregar
+                                    a Mi Menú</button>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
