@@ -42,6 +42,31 @@ body {
     margin-left: 1rem;
 }
 
+.btn-volver {
+    color: #93c5fd;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 1rem;
+}
+
+.btn-volver:hover {
+    text-decoration: underline;
+}
+
+.btn-secundario {
+    background-color: #e2e8f0;
+    color: #334155;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-secundario:hover {
+    background-color: #cbd5e1;
+}
+
 /* Pantalla de Login */
 .contenedor-login {
     min-height: 85vh;
@@ -112,11 +137,73 @@ body {
     font-size: 0.88rem;
 }
 
+.alerta-exito {
+    background-color: #f0fdf4;
+    color: #166534;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #bbf7d0;
+    margin-bottom: 1rem;
+    font-size: 0.88rem;
+}
+
+.texto-ayuda {
+    color: #64748b;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.separador {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 1.2rem 0;
+}
+
+.fila-doble {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.campo-checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.campo-checkbox input {
+    width: auto;
+}
+
+/* Franja de bienvenida del catálogo cliente */
+.franja-hero {
+    background: linear-gradient(135deg, #1e293b, #2563eb);
+    color: white;
+    padding: 2.2rem 1.5rem;
+    text-align: center;
+}
+
+.franja-hero h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+}
+
+.franja-hero p {
+    color: #dbeafe;
+    font-size: 0.95rem;
+}
+
 /* Diseños para Panel Admin y Cliente */
 .contenedor-principal {
     max-width: 1100px;
     margin: 2rem auto;
     padding: 0 1.5rem;
+}
+
+.contenedor-angosto {
+    max-width: 600px;
 }
 
 .seccion-flex {
@@ -220,4 +307,156 @@ body {
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
+}
+
+.btn-agregar:hover {
+    background-color: #15803d;
+}
+
+.tarjeta-receta {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tarjeta-clickeable {
+    cursor: pointer;
+    position: relative;
+}
+
+.tarjeta-clickeable:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.1);
+}
+
+.codigo-chip {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    margin-bottom: 0.4rem;
+}
+
+.etiqueta-no-disponible {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    background-color: #dc2626;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+.grid-admin {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+/* ---- Perfil de Usuario ---- */
+.tarjeta-perfil {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cabecera-perfil {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.avatar-circulo {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #2563eb;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.rol-badge {
+    display: inline-block;
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+}
+
+/* ---- Modal de Detalle / Edición de Receta ---- */
+.modal-fondo {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.55);
+    z-index: 100;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem 1rem;
+    overflow-y: auto;
+}
+
+.modal-fondo.activo {
+    display: flex;
+}
+
+.modal-caja {
+    background: white;
+    border-radius: 10px;
+    max-width: 520px;
+    width: 100%;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-cerrar {
+    position: absolute;
+    top: 0.8rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #64748b;
+}
+
+.modal-cerrar:hover {
+    color: #0f172a;
+}
+
+.modal-imagen {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.modal-caja h2 {
+    margin: 0.6rem 0 0.3rem;
+    color: #0f172a;
+}
+
+.modal-caja h4 {
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+    color: #334155;
+    font-size: 0.9rem;
+}
+
+.acciones-modal {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.btn-eliminar-modal {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
 }
